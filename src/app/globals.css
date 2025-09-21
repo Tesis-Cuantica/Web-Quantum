@@ -526,3 +526,941 @@
       gap: 0.5rem;
     }
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* estudiante -estilos */
+
+
+  @layer components {
+  
+  /* Quantum Laboratory Layout */
+  .quantum-lab-container {
+    @apply min-h-screen bg-background;
+  }
+
+  .quantum-lab-layout {
+    @apply flex h-screen;
+  }
+
+  .quantum-lab-content {
+    @apply flex flex-1 overflow-hidden transition-all duration-300;
+  }
+
+  .quantum-lab-content.sidebar-collapsed {
+    @apply ml-16;
+  }
+
+  .quantum-lab-left-panel {
+    @apply w-64 bg-card border-r border-border flex-shrink-0 flex flex-col;
+  }
+
+  .quantum-lab-center-panel {
+    @apply flex-1 flex flex-col bg-background overflow-hidden;
+  }
+
+  .quantum-lab-right-panel {
+    @apply w-80 bg-card border-l border-border flex-shrink-0;
+  }
+
+  .quantum-lab-sidebar {
+    @apply w-64 bg-gray-900 text-white flex-shrink-0 flex flex-col transition-all duration-300 relative;
+  }
+
+  /* Added collapsed sidebar styles */
+  .quantum-lab-sidebar.collapsed {
+    @apply w-16;
+  }
+
+  /* Fixed sidebar toggle button positioning */
+  .quantum-lab-sidebar-toggle {
+    @apply absolute w-6 h-6 bg-gray-800 border border-gray-600 rounded-full flex items-center justify-center text-white hover:bg-gray-700 transition-colors z-10;
+    right: -12px;
+    top: 24px;
+  }
+
+  .quantum-lab-toggle-icon {
+    @apply text-sm transition-transform duration-300;
+  }
+
+  .quantum-lab-toggle-icon.collapsed {
+    @apply rotate-180;
+  }
+
+  .quantum-lab-sidebar-header {
+    @apply p-6 border-b border-gray-800;
+  }
+
+  .quantum-lab-sidebar.collapsed .quantum-lab-sidebar-header {
+    @apply p-3;
+  }
+
+  .quantum-lab-logo {
+    @apply flex items-center gap-3;
+  }
+
+  .quantum-lab-sidebar.collapsed .quantum-lab-logo {
+    @apply justify-center;
+  }
+
+  .quantum-lab-logo-circle {
+    @apply w-10 h-10 rounded-full relative overflow-hidden;
+  }
+
+  .quantum-lab-logo-gradient {
+    @apply w-full h-full bg-gradient-to-br from-pink-500 to-blue-500;
+  }
+
+  .quantum-lab-logo-text {
+    @apply text-2xl font-bold text-white transition-opacity duration-300;
+  }
+
+  .quantum-lab-sidebar.collapsed .quantum-lab-logo-text {
+    @apply opacity-0 w-0 overflow-hidden;
+  }
+
+  .quantum-lab-sidebar-menu {
+    @apply flex flex-col p-4 space-y-2 flex-1;
+  }
+
+  .quantum-lab-sidebar.collapsed .quantum-lab-sidebar-menu {
+    @apply p-2;
+  }
+
+  .quantum-lab-sidebar-item {
+    @apply flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition-colors w-full text-left border-2 border-transparent relative;
+  }
+
+  .quantum-lab-sidebar.collapsed .quantum-lab-sidebar-item {
+    @apply px-2 justify-center;
+  }
+
+  .quantum-lab-sidebar-item.active {
+    @apply text-white border-2;
+  }
+
+  .quantum-lab-sidebar-item.active[data-color="red"] {
+    @apply bg-red-600 hover:bg-red-700 border-red-500;
+  }
+
+  .quantum-lab-sidebar-item.active[data-color="blue"] {
+    @apply bg-blue-600 hover:bg-blue-700 border-blue-500;
+  }
+
+  .quantum-lab-sidebar-item.active[data-color="yellow"] {
+    @apply bg-yellow-600 hover:bg-yellow-700 border-yellow-500;
+  }
+
+   /* Se cambia el color 'green' por el hexadecimal #d32c36 */
+  .quantum-lab-sidebar-item.active[data-color="green"] {
+    @apply bg-[#d32c36]/25 hover:bg-[#d32c36]/40 border-[#d32c36];
+  }
+
+  .quantum-lab-sidebar-item.active[data-color="purple"] {
+    @apply bg-purple-600 hover:bg-purple-700 border-purple-500;
+  }
+
+  .quantum-lab-sidebar-icon {
+    @apply text-xl;
+  }
+
+  .quantum-lab-sidebar-label {
+    @apply text-sm font-medium transition-opacity duration-300;
+  }
+
+  .quantum-lab-sidebar.collapsed .quantum-lab-sidebar-label {
+    @apply opacity-0 w-0 overflow-hidden;
+  }
+
+  .quantum-lab-sidebar-logout {
+    @apply text-red-400 hover:text-red-300 hover:bg-red-900/20 mt-auto;
+  }
+
+  /* Gates Panel */
+  .quantum-lab-gates-panel {
+    @apply p-4 flex-1 flex flex-col;
+  }
+
+  .quantum-lab-gates-header {
+    @apply mb-4;
+  }
+
+  .quantum-lab-gates-title {
+    @apply text-lg font-semibold mb-3;
+  }
+
+  .quantum-lab-gates-categories {
+    @apply flex flex-wrap gap-2;
+  }
+
+  .quantum-lab-category-btn {
+    @apply px-3 py-1 text-xs rounded-md bg-secondary text-secondary-foreground hover:bg-accent hover:text-accent-foreground transition-colors;
+  }
+
+  .quantum-lab-category-btn.active {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  .quantum-lab-gates-grid {
+    @apply grid grid-cols-2 gap-3 flex-1 overflow-y-auto;
+  }
+
+  .quantum-lab-gate-item {
+    @apply p-3 bg-secondary rounded-lg border border-border hover:bg-accent hover:border-ring cursor-grab active:cursor-grabbing transition-colors;
+  }
+
+  .quantum-lab-gate-symbol {
+    @apply text-lg font-bold text-center mb-1;
+  }
+
+  .quantum-lab-gate-name {
+    @apply text-xs text-center text-muted-foreground;
+  }
+
+  .quantum-lab-gates-info {
+    @apply mt-4 p-3 bg-muted rounded-lg;
+  }
+
+  .quantum-lab-gates-info h4 {
+    @apply font-medium mb-2;
+  }
+
+  .quantum-lab-gates-info p {
+    @apply text-sm text-muted-foreground;
+  }
+
+  /* Circuit Grid */
+  .quantum-lab-circuit-header {
+    @apply p-4 border-b border-border;
+  }
+
+  .quantum-lab-qubit-controls {
+    @apply flex items-center justify-center gap-4;
+  }
+
+  .quantum-lab-qubit-btn {
+    @apply w-8 h-8 rounded-full border border-border bg-background hover:bg-accent transition-colors flex items-center justify-center font-bold;
+  }
+
+  .quantum-lab-qubit-btn:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  .quantum-lab-qubit-btn-minus {
+    @apply text-red-600 hover:text-red-700 hover:border-red-300;
+  }
+
+  .quantum-lab-qubit-btn-plus {
+    @apply text-green-600 hover:text-green-700 hover:border-green-300;
+  }
+
+  .quantum-lab-qubit-count {
+    @apply font-medium;
+  }
+
+  .quantum-lab-circuit-container {
+    @apply flex-1 p-4 overflow-auto;
+  }
+
+  .quantum-lab-circuit-grid {
+    @apply flex gap-4 mb-4;
+  }
+
+  .quantum-lab-qubit-labels {
+    @apply flex flex-col gap-2 w-12;
+  }
+
+  .quantum-lab-qubit-label,
+  .quantum-lab-classical-label {
+    @apply h-12 flex items-center justify-center text-sm font-mono bg-secondary rounded border border-border;
+  }
+
+  .quantum-lab-circuit-main {
+    @apply flex-1;
+  }
+
+  .quantum-lab-quantum-wires {
+    @apply space-y-2 mb-4;
+  }
+
+  .quantum-lab-quantum-wire {
+    @apply relative h-12 flex items-center;
+  }
+
+  .quantum-lab-wire-line {
+    @apply absolute inset-0 border-t-2 border-foreground top-1/2;
+  }
+
+  .quantum-lab-wire-cells {
+    @apply flex gap-1 relative z-10;
+  }
+
+  .quantum-lab-circuit-cell {
+    @apply w-12 h-12 border border-dashed border-border bg-background/50 rounded flex items-center justify-center relative;
+  }
+
+  .quantum-lab-circuit-cell.drag-over {
+    @apply border-primary bg-primary/10;
+  }
+
+  .quantum-lab-circuit-cell.has-gate {
+    @apply border-solid border-primary bg-primary/5;
+  }
+
+  .quantum-lab-gate-in-circuit {
+    @apply relative w-full h-full flex items-center justify-center bg-card border border-border rounded;
+  }
+
+  .quantum-lab-gate-symbol {
+    @apply font-bold text-sm;
+  }
+
+  .quantum-lab-remove-gate {
+    @apply absolute -top-1 -right-1 w-4 h-4 bg-destructive text-destructive-foreground rounded-full text-xs flex items-center justify-center hover:bg-destructive/80;
+  }
+
+  .quantum-lab-classical-wires {
+    @apply space-y-2;
+  }
+
+  .quantum-lab-classical-wire {
+    @apply h-12 flex items-center;
+  }
+
+  .quantum-lab-classical-line {
+    @apply w-full border-t-2 border-dashed border-muted-foreground/50;
+  }
+
+  .quantum-lab-time-labels {
+    @apply flex gap-1 w-12 ml-4;
+  }
+
+  .quantum-lab-time-label {
+    @apply w-12 text-center text-xs text-muted-foreground;
+  }
+
+  .quantum-lab-circuit-controls {
+    @apply flex gap-4 justify-center;
+  }
+
+  .quantum-lab-control-btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-colors;
+  }
+
+  .quantum-lab-clear-btn {
+    @apply bg-secondary text-secondary-foreground hover:bg-accent hover:text-accent-foreground;
+  }
+
+  .quantum-lab-run-btn {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90;
+  }
+
+  /* Templates Panel */
+  .quantum-lab-templates-panel {
+    @apply p-4 border-t border-border;
+  }
+
+  .quantum-lab-templates-header {
+    @apply mb-4;
+  }
+
+  .quantum-lab-templates-title {
+    @apply font-semibold mb-1;
+  }
+
+  .quantum-lab-templates-subtitle {
+    @apply text-sm text-muted-foreground;
+  }
+
+  .quantum-lab-templates-grid {
+    @apply grid grid-cols-1 gap-2;
+  }
+
+  .quantum-lab-template-btn {
+    @apply p-3 text-left bg-secondary rounded-lg border border-border hover:bg-accent hover:border-ring transition-colors relative;
+  }
+
+  .quantum-lab-template-btn.disabled {
+    @apply opacity-50 cursor-not-allowed hover:bg-secondary hover:border-border;
+  }
+
+  .quantum-lab-template-name {
+    @apply font-medium text-sm;
+  }
+
+  .quantum-lab-template-desc {
+    @apply text-xs text-muted-foreground mt-1;
+  }
+
+  .quantum-lab-template-badge {
+    @apply absolute top-2 right-2 px-2 py-1 text-xs bg-primary text-primary-foreground rounded;
+  }
+
+  /* Results Panel */
+  .quantum-lab-results-panel {
+    @apply p-4 h-full flex flex-col;
+  }
+
+  .quantum-lab-results-header {
+    @apply mb-4;
+  }
+
+  .quantum-lab-results-title {
+    @apply text-lg font-semibold mb-3;
+  }
+
+  .quantum-lab-results-tabs {
+    @apply flex gap-1 bg-muted p-1 rounded-lg;
+  }
+
+  .quantum-lab-tab {
+    @apply px-3 py-2 text-sm rounded-md transition-colors;
+  }
+
+  .quantum-lab-tab.active {
+    @apply bg-background text-foreground shadow-sm;
+  }
+
+  .quantum-lab-results-content {
+    @apply flex-1 overflow-y-auto;
+  }
+
+  /* Probabilities View */
+  .quantum-lab-probabilities {
+    @apply space-y-4;
+  }
+
+  .quantum-lab-histogram {
+    @apply bg-secondary rounded-lg p-4;
+  }
+
+  .quantum-lab-histogram-bars {
+    @apply flex items-end gap-2 h-32;
+  }
+
+  .quantum-lab-histogram-bar-container {
+    @apply flex-1 flex flex-col items-center;
+  }
+
+  .quantum-lab-histogram-bar {
+    @apply w-full bg-chart-1 rounded-t min-h-1;
+  }
+
+  .quantum-lab-histogram-label {
+    @apply text-xs mt-2 font-mono;
+  }
+
+  .quantum-lab-histogram-value {
+    @apply text-xs text-muted-foreground;
+  }
+
+  .quantum-lab-state-info h4 {
+    @apply font-medium mb-2;
+  }
+
+  .quantum-lab-state-details {
+    @apply space-y-2;
+  }
+
+  .quantum-lab-state-item {
+    @apply flex justify-between items-center p-2 bg-secondary rounded;
+  }
+
+  .quantum-lab-state-name {
+    @apply font-mono text-sm;
+  }
+
+  .quantum-lab-state-prob {
+    @apply text-xs text-muted-foreground;
+  }
+
+  /* Q-Sphere View */
+  .quantum-lab-qsphere {
+    @apply space-y-4;
+  }
+
+  .quantum-lab-qsphere-container {
+    @apply bg-secondary rounded-lg p-4;
+  }
+
+  .quantum-lab-qsphere-visualization {
+    @apply h-48 flex items-center justify-center mb-4;
+  }
+
+  .quantum-lab-qsphere-sphere {
+    @apply relative w-32 h-32 border-2 border-dashed border-border rounded-full flex items-center justify-center;
+  }
+
+  .quantum-lab-qsphere-point-main {
+    @apply absolute top-2 right-2 text-xs font-mono bg-chart-1 text-white px-2 py-1 rounded;
+  }
+
+  .quantum-lab-qsphere-axes {
+    @apply absolute inset-0;
+  }
+
+  .quantum-lab-qsphere-axis {
+    @apply absolute bg-muted-foreground;
+  }
+
+  .quantum-lab-qsphere-axis-x {
+    @apply w-full h-px top-1/2 left-0;
+  }
+
+  .quantum-lab-qsphere-axis-y {
+    @apply h-full w-px top-0 left-1/2;
+  }
+
+  .quantum-lab-qsphere-axis-z {
+    @apply w-full h-px top-1/4 left-0 rotate-45 origin-center;
+  }
+
+  .quantum-lab-qsphere-controls {
+    @apply flex justify-between items-center;
+  }
+
+  .quantum-lab-qsphere-info {
+    @apply space-y-1;
+  }
+
+  .quantum-lab-qsphere-phase,
+  .quantum-lab-qsphere-amplitude {
+    @apply text-sm font-mono;
+  }
+
+  .quantum-lab-qsphere-options {
+    @apply space-y-2;
+  }
+
+  .quantum-lab-checkbox {
+    @apply flex items-center gap-2 text-sm cursor-pointer;
+  }
+
+  .quantum-lab-checkbox input {
+    @apply w-4 h-4;
+  }
+
+  /* Inspector View */
+  .quantum-lab-inspector {
+    @apply space-y-4;
+  }
+
+  .quantum-lab-inspector-section {
+    @apply bg-secondary rounded-lg p-4;
+  }
+
+  .quantum-lab-inspector-section h4 {
+    @apply font-medium mb-3;
+  }
+
+  .quantum-lab-measurement-results {
+    @apply grid grid-cols-2 gap-2;
+  }
+
+  .quantum-lab-measurement-item {
+    @apply flex justify-between items-center p-2 bg-background rounded;
+  }
+
+  .quantum-lab-measurement-label {
+    @apply font-mono text-sm;
+  }
+
+  .quantum-lab-measurement-value {
+    @apply font-mono text-sm font-bold;
+  }
+
+  .quantum-lab-stats {
+    @apply space-y-2;
+  }
+
+  .quantum-lab-stat-item {
+    @apply flex justify-between items-center;
+  }
+
+  .quantum-lab-stat-label {
+    @apply text-sm text-muted-foreground;
+  }
+
+  .quantum-lab-stat-value {
+    @apply text-sm font-medium;
+  }
+
+  .quantum-lab-state-vector {
+    @apply space-y-1 max-h-32 overflow-y-auto;
+  }
+
+  .quantum-lab-vector-component {
+    @apply flex justify-between items-center text-xs font-mono p-1 bg-background rounded;
+  }
+
+  .quantum-lab-vector-state {
+    @apply text-muted-foreground;
+  }
+
+  .quantum-lab-vector-amplitude {
+    @apply font-medium;
+  }
+
+  /* Added histogram panel styles */
+  .quantum-lab-histogram-panel {
+    @apply bg-card border-t border-border p-4;
+  }
+
+  .quantum-lab-histogram-header {
+    @apply flex justify-between items-center mb-4;
+  }
+
+  .quantum-lab-histogram-header h3 {
+    @apply text-lg font-semibold;
+  }
+
+  .quantum-lab-histogram-controls {
+    @apply flex items-center gap-4;
+  }
+
+  .quantum-lab-shots-control {
+    @apply flex items-center gap-2 text-sm;
+  }
+
+  .quantum-lab-shots-select {
+    @apply px-2 py-1 border border-border rounded bg-background text-foreground;
+  }
+
+  .quantum-lab-histogram-content {
+    @apply space-y-4;
+  }
+
+  .quantum-lab-histogram-chart {
+    @apply flex items-end gap-2 h-32 bg-secondary rounded-lg p-4 overflow-x-auto;
+  }
+
+  .quantum-lab-histogram-bar-group {
+    @apply flex flex-col items-center min-w-12;
+  }
+
+  .quantum-lab-histogram-bar {
+    @apply w-8 rounded-t transition-all duration-300 min-h-1;
+  }
+
+  .quantum-lab-histogram-state-label {
+    @apply text-xs font-mono mt-2 text-center;
+  }
+
+  .quantum-lab-histogram-count {
+    @apply text-xs text-muted-foreground text-center;
+  }
+
+  .quantum-lab-histogram-legend {
+    @apply bg-muted rounded-lg p-3;
+  }
+
+  .quantum-lab-histogram-stats {
+    @apply flex justify-between items-center text-sm;
+  }
+
+  .quantum-lab-histogram-stats span {
+    @apply text-muted-foreground;
+  }
+}
+
+/* Updated responsive design for new sidebar layout */
+@media (max-width: 1024px) {
+  .quantum-lab-layout {
+    @apply flex-col;
+  }
+
+  .quantum-lab-sidebar {
+    @apply w-full h-auto flex-row;
+  }
+
+  .quantum-lab-sidebar.collapsed {
+    @apply w-full h-16;
+  }
+
+  /* Fixed responsive toggle button positioning */
+  .quantum-lab-sidebar-toggle {
+    right: 24px;
+    top: auto;
+    bottom: -12px;
+  }
+
+  .quantum-lab-sidebar-header {
+    @apply p-4;
+  }
+
+  .quantum-lab-sidebar.collapsed .quantum-lab-sidebar-header {
+    @apply p-3;
+  }
+
+  .quantum-lab-logo {
+    @apply flex items-center gap-3;
+  }
+
+  .quantum-lab-sidebar.collapsed .quantum-lab-logo {
+    @apply justify-center;
+  }
+
+  .quantum-lab-logo-circle {
+    @apply w-10 h-10 rounded-full relative overflow-hidden;
+  }
+
+  .quantum-lab-logo-gradient {
+    @apply w-full h-full bg-gradient-to-br from-pink-500 to-blue-500;
+  }
+
+  .quantum-lab-logo-text {
+    @apply text-2xl font-bold text-white transition-opacity duration-300;
+  }
+
+  .quantum-lab-sidebar.collapsed .quantum-lab-logo-text {
+    @apply opacity-0 w-0 overflow-hidden;
+  }
+
+  .quantum-lab-sidebar-menu {
+    @apply flex flex-col p-4 space-y-2 flex-1;
+  }
+
+  .quantum-lab-sidebar.collapsed .quantum-lab-sidebar-menu {
+    @apply p-2;
+  }
+
+  .quantum-lab-sidebar-item {
+    @apply flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition-colors w-full text-left border-2 border-transparent relative;
+  }
+
+  .quantum-lab-sidebar.collapsed .quantum-lab-sidebar-item {
+    @apply px-2 justify-center;
+  }
+
+  .quantum-lab-sidebar-item.active {
+    @apply text-white border-2;
+  }
+
+  .quantum-lab-sidebar-item.active[data-color="red"] {
+    @apply bg-red-600 hover:bg-red-700 border-red-500;
+  }
+
+  .quantum-lab-sidebar-item.active[data-color="blue"] {
+    @apply bg-blue-600 hover:bg-blue-700 border-blue-500;
+  }
+
+  .quantum-lab-sidebar-item.active[data-color="yellow"] {
+    @apply bg-yellow-600 hover:bg-yellow-700 border-yellow-500;
+  }
+
+  .quantum-lab-sidebar-item.active[data-color="green"] {
+    @apply bg-green-600 hover:bg-green-700 border-green-500;
+  }
+
+  .quantum-lab-sidebar-item.active[data-color="purple"] {
+    @apply bg-purple-600 hover:bg-purple-700 border-purple-500;
+  }
+
+  .quantum-lab-sidebar-icon {
+    @apply text-xl;
+  }
+
+  .quantum-lab-sidebar-label {
+    @apply text-sm font-medium transition-opacity duration-300;
+  }
+
+  .quantum-lab-sidebar.collapsed .quantum-lab-sidebar-label {
+    @apply opacity-0 w-0 overflow-hidden;
+  }
+
+  .quantum-lab-sidebar-logout {
+    @apply text-red-400 hover:text-red-300 hover:bg-red-900/20 mt-auto;
+  }
+
+  .quantum-lab-content {
+    @apply flex-col;
+  }
+
+  .quantum-lab-content.sidebar-collapsed {
+    @apply ml-0;
+  }
+
+  .quantum-lab-left-panel,
+  .quantum-lab-right-panel {
+    @apply w-full;
+  }
+
+  .quantum-lab-left-panel {
+    @apply border-r-0 border-b;
+  }
+
+  .quantum-lab-right-panel {
+    @apply border-l-0 border-t;
+  }
+
+  /* Added responsive histogram styles */
+  .quantum-lab-histogram-chart {
+    @apply h-24;
+  }
+
+  .quantum-lab-histogram-stats {
+    @apply flex-col items-start gap-1;
+  }
+}
+
+@media (max-width: 768px) {
+  .quantum-lab-gates-grid {
+    @apply grid-cols-1;
+  }
+
+  .quantum-lab-circuit-grid {
+    @apply flex-col;
+  }
+
+  .quantum-lab-qubit-labels {
+    @apply flex-row w-full;
+  }
+
+  .quantum-lab-time-labels {
+    @apply flex-col h-auto ml-0;
+  }
+
+  .quantum-lab-histogram-bars {
+    @apply h-24;
+  }
+
+  .quantum-lab-measurement-results {
+    @apply grid-cols-1;
+  }
+
+  .quantum-lab-sidebar-label {
+    @apply hidden;
+  }
+
+  /* Added mobile histogram styles */
+  .quantum-lab-histogram-header {
+    @apply flex-col items-start gap-2;
+  }
+
+  .quantum-lab-histogram-chart {
+    @apply h-20;
+  }
+
+  .quantum-lab-histogram-bar {
+    @apply w-6;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* --- Estilos para la Q-Sphere y su UI --- */
+
+.quantum-lab-qsphere-canvas-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 400px; 
+  border-radius: 0.5rem;
+  overflow: hidden; 
+}
+
+/* Leyenda de Fase  */
+.qsphere-legend {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #333;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0.3rem 0.6rem;
+  border-radius: 99px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 0.8rem;
+}
+
+.qsphere-legend-wheel {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: conic-gradient(from 90deg, hsl(0, 100%, 50%), hsl(60, 100%, 50%), hsl(120, 100%, 50%), hsl(180, 100%, 50%), hsl(240, 100%, 50%), hsl(300, 100%, 50%), hsl(0, 100%, 50%));
+}
+
+.qsphere-legend-labels {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.qsphere-legend-title {
+  font-weight: 500;
+}
+
+/* Controles de Display (abajo a la derecha) */
+.qsphere-controls {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.qsphere-controls-title {
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-right: 0.5rem;
+}
+
+.qsphere-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
