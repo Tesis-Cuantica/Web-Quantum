@@ -1491,3 +1491,459 @@
   cursor: pointer;
   font-size: 0.9rem;
 }
+
+/* === ESTILOS PARA LA PÁGINA DE CURSOS DEL ESTUDIANTE === */
+
+/* Contenedor principal */
+.student-courses-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  padding: 2rem;
+  position: relative;
+}
+
+/* Estado de carga */
+.courses-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  gap: 1.5rem;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #e2e8f0;
+  border-top: 4px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Header con bienvenida */
+.courses-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.welcome-message {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0 0 0.75rem;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+.student-name {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.courses-subtitle {
+  font-size: 1.25rem;
+  color: #64748b;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Contenedor de las tarjetas principales */
+.cards-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto 4rem;
+}
+
+/* Estilos base para todas las tarjetas */
+.info-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    0 8px 16px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.info-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: 24px 24px 0 0;
+}
+
+.info-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 32px 64px rgba(0, 0, 0, 0.15),
+    0 16px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Tarjeta de información del estudiante (tema azul) */
+.student-info-card::before {
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+}
+
+.student-info-card:hover {
+  box-shadow: 
+    0 32px 64px rgba(59, 130, 246, 0.2),
+    0 16px 32px rgba(59, 130, 246, 0.1);
+}
+
+/* Tarjeta de ciberseguridad (tema rojo) */
+.security-card::before {
+  background: linear-gradient(90deg, #dc2626, #b91c1c);
+}
+
+.security-card:hover {
+  box-shadow: 
+    0 32px 64px rgba(220, 38, 38, 0.2),
+    0 16px 32px rgba(220, 38, 38, 0.1);
+}
+
+/* Header de las tarjetas */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.card-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: relative;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.student-icon {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+.security-icon {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  letter-spacing: -0.025em;
+}
+
+/* Contenido de las tarjetas */
+.card-content {
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* Filas de información en la tarjeta del estudiante */
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+  transition: background-color 0.2s ease;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-row:hover {
+  background-color: rgba(248, 250, 252, 0.8);
+  margin: 0 -1rem;
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #64748b;
+  font-size: 1rem;
+}
+
+.info-value {
+  font-weight: 700;
+  color: #1e293b;
+  font-size: 1rem;
+}
+
+/* Mensaje de ciberseguridad */
+.security-message {
+  text-align: center;
+}
+
+.primary-message {
+  font-size: 1.125rem;
+  color: #475569;
+  margin: 0 0 1.5rem;
+  font-weight: 500;
+}
+
+.secondary-message {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin: 1.5rem 0 2rem;
+  font-style: italic;
+}
+
+/* Badge del curso */
+.course-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  color: white;
+  padding: 1rem 1.75rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 
+    0 12px 24px rgba(220, 38, 38, 0.3),
+    0 4px 8px rgba(220, 38, 38, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.course-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.course-badge:hover::before {
+  left: 100%;
+}
+
+.course-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 16px 32px rgba(220, 38, 38, 0.4),
+    0 8px 16px rgba(220, 38, 38, 0.3);
+}
+
+.badge-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-text {
+  font-size: 1.1rem;
+}
+
+/* Indicador de progreso */
+.progress-indicator {
+  margin-top: 1.5rem;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(226, 232, 240, 0.6);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #dc2626, #ef4444);
+  border-radius: 4px;
+  transition: width 0.8s ease;
+  position: relative;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.progress-text {
+  font-size: 0.875rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+/* Estadísticas rápidas */
+.quick-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #64748b, #475569);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.stat-content {
+  text-align: left;
+}
+
+.stat-number {
+  font-size: 1.875rem;
+  font-weight: 900;
+  color: #1e293b;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .cards-container {
+    gap: 2rem;
+  }
+  
+  .info-card {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .student-courses-container {
+    padding: 1.5rem;
+  }
+  
+  .welcome-message {
+    font-size: 2.25rem;
+  }
+  
+  .cards-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .info-card {
+    padding: 1.5rem;
+  }
+  
+  .card-header {
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .card-icon {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+  }
+  
+  .quick-stats {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .stat-item {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .student-courses-container {
+    padding: 1rem;
+  }
+  
+  .welcome-message {
+    font-size: 1.875rem;
+  }
+  
+  .courses-subtitle {
+    font-size: 1rem;
+  }
+  
+  .info-card {
+    padding: 1.25rem;
+  }
+  
+  .course-badge {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}

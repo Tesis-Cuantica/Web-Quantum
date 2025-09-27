@@ -5,17 +5,18 @@ import {
   FlaskConical,
   UserCircle,
   BookOpen, 
-  Users,    
+  Users,
+  FileText,
+  Brain,    
 } from "lucide-react";
 
 import type { NavItem } from "@/components/layout/AppSidebar";
 
 export const studentNavItems: NavItem[] = [
-  { href: "/estudiante", icon: Home, label: "Inicio", color: "red" },
-  { href: "/estudiante/progreso", icon: BarChart3, label: "Progreso", color: "blue" },
-  { href: "/estudiante/logros", icon: Trophy, label: "Logros", color: "yellow" },
-  { href: "/estudiante/laboratorio", icon: FlaskConical, label: "Laboratorio", color: "green" },
-  { href: "/estudiante/perfil", icon: UserCircle, label: "Perfil", color: "purple" },
+  { href: "/estudiante/cursos", icon: BookOpen, label: "Cursos", color: "red" },
+  { href: "/estudiante/laboratorio", icon: FlaskConical, label: "Laboratorio", color: "red" },
+  { href: "/estudiante/reportes", icon: FileText, label: "Reportes", color: "red" },
+  { href: "/estudiante/quantumml", icon: Brain, label: "QuantumML", color: "red" },
 ];
 
 // Enlaces para el rol de Profesor (TODOS con color "red")

@@ -2,7 +2,7 @@ import { QuantumLaboratory } from "@/components/estudiante/laboratorio/quantum-l
 
 export default function LaboratorioPage() {
   return (
-    <div className="quantum-lab-container">
+    <div className="h-full">
       <QuantumLaboratory />
     </div>
   )

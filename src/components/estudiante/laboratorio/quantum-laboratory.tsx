@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { StudentNavbar } from "./student-navbar"
 import { GatesPanel } from "./gates-panel"
 import { CircuitGrid } from "./circuit-grid"
 import { ResultsPanel } from "./results-panel"
@@ -11,7 +10,6 @@ import { HistogramPanel } from "./histogram-panel"
 export function QuantumLaboratory() {
   const [qubits, setQubits] = useState(4) 
   const [circuit, setCircuit] = useState<any[][]>([])
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
 
   const addQubit = () => {
     if (qubits < 10) {
@@ -19,7 +17,6 @@ export function QuantumLaboratory() {
       setQubits((prev) => prev + 1)
     }
   }
-
   const removeQubit = () => {
     if (qubits > 1) {
       // Minimum 1 qubit
@@ -27,17 +24,10 @@ export function QuantumLaboratory() {
     }
   }
 
-  const toggleSidebar = () => {
-    setSidebarCollapsed(!sidebarCollapsed)
-  }
-
   return (
-    <div className="quantum-lab-layout">
-      {/* Left Sidebar Navigation */}
-      <StudentNavbar collapsed={sidebarCollapsed} onToggle={toggleSidebar} />
-
+    <div className="h-full flex">
       {/* Main Content Area */}
-      <div className={`quantum-lab-content ${sidebarCollapsed ? "sidebar-collapsed" : ""}`}>
+      <div className="flex flex-1 overflow-hidden">
         {/* Left Panel - Gates and Templates */}
         <div className="quantum-lab-left-panel">
           <GatesPanel />
