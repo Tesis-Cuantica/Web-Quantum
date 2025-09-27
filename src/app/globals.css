@@ -1161,6 +1161,13 @@
     @apply font-medium;
   }
 
+
+
+
+
+
+
+  
   /* Added histogram panel styles */
   .quantum-lab-histogram-panel {
     @apply bg-card border-t border-border p-4;
@@ -1492,68 +1499,94 @@
   font-size: 0.9rem;
 }
 
-/* === ESTILOS PARA LA PÁGINA DE CURSOS DEL ESTUDIANTE === */
 
-/* Contenedor principal */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  PÁGINA DE CURSOS DEL ESTUDIANTE */
+
 .student-courses-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  padding: 2rem;
+  background: #fafbfc; /* Fondo gris muy sutil */
+  padding: 2.5rem;
   position: relative;
 }
 
-/* Estado de carga */
+/* Estado de carga - Spinner más elegante */
 .courses-loading {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 70vh;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .loading-spinner {
-  width: 50px;
-  height: 50px;
-  border: 4px solid #e2e8f0;
-  border-top: 4px solid #3b82f6;
+  width: 40px;
+  height: 40px;
+  border: 2px solid #f1f5f9;
+  border-top: 2px solid #374151;
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: spin 1.2s linear infinite;
 }
 
+/* Animación más suave */
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 
-/* Header con bienvenida */
+/* Header con bienvenida - Diseño más sofisticado */
 .courses-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
   position: relative;
 }
 
 .welcome-message {
-  font-size: 2.75rem;
-  font-weight: 800;
-  color: #1e293b;
-  margin: 0 0 0.75rem;
-  letter-spacing: -0.025em;
-  line-height: 1.1;
+  font-size: 2.5rem;
+  font-weight: 600; /* Peso más moderado */
+  color: #1f2937; /* Gris más elegante */
+  margin: 0 0 1rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 .student-name {
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #374151; /* Color sólido más elegante que gradientes */
+  font-weight: 700;
   position: relative;
 }
 
 .courses-subtitle {
-  font-size: 1.25rem;
-  color: #64748b;
-  font-weight: 500;
+  font-size: 1.125rem;
+  color: #6b7280; /* Gris más suave */
+  font-weight: 400; /* Peso normal más elegante */
   margin: 0;
 }
 
@@ -1561,198 +1594,182 @@
 .cards-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2.5rem;
-  max-width: 1200px;
-  margin: 0 auto 4rem;
+  gap: 3rem;
+  max-width: 1100px;
+  margin: 0 auto 5rem;
 }
 
 /* Estilos base para todas las tarjetas */
 .info-card {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-radius: 24px;
+  background: #ffffff; /* Fondo blanco puro */
+  border-radius: 16px; /* Bordes más suaves */
   padding: 2.5rem;
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.1),
-    0 8px 16px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06); 
+  border: 1px solid #f3f4f6; 
+  transition: all 0.2s ease; 
   position: relative;
   overflow: hidden;
 }
 
+/* Línea superior elegante y sutil */
 .info-card::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
-  border-radius: 24px 24px 0 0;
+  height: 2px; /* Línea más fina */
+  border-radius: 16px 16px 0 0;
 }
 
+/* Hover más sutil y elegante */
 .info-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 
-    0 32px 64px rgba(0, 0, 0, 0.15),
-    0 16px 32px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px); /* Movimiento más sutil */
+  box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.08); /* Sombra más elegante */
 }
 
-/* Tarjeta de información del estudiante (tema azul) */
+/* Tarjeta de información del estudiante - Acento azul elegante */
 .student-info-card::before {
-  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+  background: #3b82f6; /* Color sólido más elegante */
 }
 
 .student-info-card:hover {
-  box-shadow: 
-    0 32px 64px rgba(59, 130, 246, 0.2),
-    0 16px 32px rgba(59, 130, 246, 0.1);
+  box-shadow: 0 8px 25px -5px rgba(59, 130, 246, 0.12); /* Sombra azul muy sutil */
 }
 
-/* Tarjeta de ciberseguridad (tema rojo) */
+/* Tarjeta de ciberseguridad - Acento rojo elegante */
 .security-card::before {
-  background: linear-gradient(90deg, #dc2626, #b91c1c);
+  background: #dc2626; /* Color sólido más elegante */
 }
 
 .security-card:hover {
-  box-shadow: 
-    0 32px 64px rgba(220, 38, 38, 0.2),
-    0 16px 32px rgba(220, 38, 38, 0.1);
+  box-shadow: 0 8px 25px -5px rgba(220, 38, 38, 0.12); /* Sombra roja muy sutil */
 }
 
-/* Header de las tarjetas */
+/* Header de las tarjetas - Diseño más limpio */
 .card-header {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
-  margin-bottom: 2rem;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
 }
 
 .card-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 16px;
+  width: 48px; /* Tamaño más moderado */
+  height: 48px;
+  border-radius: 12px; /* Bordes más suaves */
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   position: relative;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: none; /* Sin sombra para mayor elegancia */
 }
 
 .student-icon {
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  background: #3b82f6; /* Color sólido más elegante */
 }
 
 .security-icon {
-  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  background: #dc2626; /* Color sólido más elegante */
 }
 
 .card-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1e293b;
+  font-size: 1.375rem; /* Tamaño más moderado */
+  font-weight: 600; /* Peso más elegante */
+  color: #1f2937; /* Gris más sofisticado */
   margin: 0;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.015em;
 }
 
 /* Contenido de las tarjetas */
 .card-content {
-  color: #475569;
-  line-height: 1.6;
+  color: #4b5563; /* Gris más elegante */
+  line-height: 1.7; /* Mayor altura de línea para mejor legibilidad */
 }
 
-/* Filas de información en la tarjeta del estudiante */
+/* Filas de información en la tarjeta del estudiante - Diseño más limpio */
 .info-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 0;
-  border-bottom: 1px solid rgba(226, 232, 240, 0.6);
-  transition: background-color 0.2s ease;
+  padding: 1.125rem 0; /* Más espaciado */
+  border-bottom: 1px solid #f3f4f6; /* Línea muy sutil */
+  transition: all 0.15s ease;
 }
 
 .info-row:last-child {
   border-bottom: none;
 }
 
+/* Hover más sutil y elegante */
 .info-row:hover {
-  background-color: rgba(248, 250, 252, 0.8);
-  margin: 0 -1rem;
-  padding: 1rem;
-  border-radius: 12px;
+  background-color: #f9fafb; /* Fondo muy sutil */
+  margin: 0 -1.5rem;
+  padding: 1.125rem 1.5rem;
+  border-radius: 8px;
 }
 
 .info-label {
-  font-weight: 600;
-  color: #64748b;
-  font-size: 1rem;
+  font-weight: 500; /* Peso más elegante */
+  color: #6b7280; /* Gris más suave */
+  font-size: 0.95rem;
 }
 
 .info-value {
-  font-weight: 700;
-  color: #1e293b;
-  font-size: 1rem;
+  font-weight: 600; /* Peso más moderado */
+  color: #1f2937; /* Negro más elegante */
+  font-size: 0.95rem;
 }
 
-/* Mensaje de ciberseguridad */
+/* Mensaje de ciberseguridad - Tipografía más elegante */
 .security-message {
   text-align: center;
 }
 
 .primary-message {
-  font-size: 1.125rem;
-  color: #475569;
-  margin: 0 0 1.5rem;
-  font-weight: 500;
+  font-size: 1.1rem;
+  color: #4b5563; /* Gris más elegante */
+  margin: 0 0 2rem;
+  font-weight: 400; /* Peso normal más elegante */
+  line-height: 1.6;
 }
 
 .secondary-message {
-  font-size: 0.95rem;
-  color: #64748b;
-  margin: 1.5rem 0 2rem;
-  font-style: italic;
+  font-size: 0.9rem;
+  color: #6b7280; /* Gris más suave */
+  margin: 2rem 0 2.5rem;
+  font-style: normal; /* Sin cursiva para mayor elegancia */
+  font-weight: 400;
 }
 
-/* Badge del curso */
+/* Badge del curso - Diseño minimalista y elegante */
 .course-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  background: #dc2626; /* Color sólido más elegante */
   color: white;
-  padding: 1rem 1.75rem;
-  border-radius: 999px;
-  font-weight: 700;
-  font-size: 1.1rem;
-  box-shadow: 
-    0 12px 24px rgba(220, 38, 38, 0.3),
-    0 4px 8px rgba(220, 38, 38, 0.2);
-  transition: all 0.3s ease;
+  padding: 0.875rem 1.5rem; /* Padding más moderado */
+  border-radius: 8px; /* Border radius menos redondeado, más moderno */
+  font-weight: 500; /* Peso más elegante */
+  font-size: 1rem;
+  box-shadow: 0 2px 4px rgba(220, 38, 38, 0.15); /* Sombra muy sutil */
+  transition: all 0.2s ease; /* Transición más rápida */
   position: relative;
   overflow: hidden;
 }
 
+/* Sin efectos de brillo para mayor elegancia */
 .course-badge::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.6s ease;
+  display: none;
 }
 
-.course-badge:hover::before {
-  left: 100%;
-}
-
+/* Hover más sutil */
 .course-badge:hover {
-  transform: translateY(-2px);
-  box-shadow: 
-    0 16px 32px rgba(220, 38, 38, 0.4),
-    0 8px 16px rgba(220, 38, 38, 0.3);
+  transform: translateY(-1px); /* Movimiento muy sutil */
+  box-shadow: 0 4px 8px rgba(220, 38, 38, 0.2); /* Sombra más elegante */
+  background: #b91c1c; /* Cambio de color sutil */
 }
 
 .badge-icon {
@@ -1762,59 +1779,53 @@
 }
 
 .badge-text {
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
-/* Indicador de progreso */
+/* Indicador de progreso - Diseño más elegante */
 .progress-indicator {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
 }
 
 .progress-bar {
   width: 100%;
-  height: 8px;
-  background: rgba(226, 232, 240, 0.6);
-  border-radius: 4px;
+  height: 6px; /* Más delgado y elegante */
+  background: #f3f4f6; /* Fondo gris muy claro */
+  border-radius: 3px;
   overflow: hidden;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #dc2626, #ef4444);
-  border-radius: 4px;
-  transition: width 0.8s ease;
+  background: #dc2626; /* Color sólido más elegante */
+  border-radius: 3px;
+  transition: width 0.6s ease; /* Transición más rápida */
   position: relative;
 }
 
+/* Sin efectos de brillo para mayor elegancia */
 .progress-fill::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  animation: shimmer 2s infinite;
+  display: none;
 }
 
+/* Sin animación shimmer para mayor elegancia */
 @keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  /* Animación deshabilitada */
 }
 
 .progress-text {
   font-size: 0.875rem;
-  color: #64748b;
-  font-weight: 600;
+  color: #6b7280; /* Gris más suave */
+  font-weight: 500; /* Peso más elegante */
 }
 
-/* Estadísticas rápidas */
+/* Estadísticas rápidas - Diseño más minimalista */
 .quick-stats {
   display: flex;
   justify-content: center;
-  gap: 3rem;
-  max-width: 900px;
+  gap: 2.5rem;
+  max-width: 800px;
   margin: 0 auto;
   padding: 2rem 0;
 }
@@ -1823,25 +1834,24 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
+  background: #ffffff; /* Fondo blanco puro */
   padding: 1.5rem 2rem;
-  border-radius: 20px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease;
+  border-radius: 12px; /* Bordes más suaves */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombra muy sutil */
+  border: 1px solid #f3f4f6; /* Borde gris muy claro */
+  transition: all 0.2s ease; /* Transición más rápida */
 }
 
 .stat-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px); /* Movimiento más sutil */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* Sombra más elegante */
 }
 
 .stat-icon {
-  width: 48px;
-  height: 48px;
-  background: linear-gradient(135deg, #64748b, #475569);
-  border-radius: 12px;
+  width: 44px; /* Tamaño más moderado */
+  height: 44px;
+  background: #6b7280; /* Color gris elegante, sin gradiente */
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1854,25 +1864,25 @@
 }
 
 .stat-number {
-  font-size: 1.875rem;
-  font-weight: 900;
-  color: #1e293b;
+  font-size: 1.75rem; /* Tamaño más moderado */
+  font-weight: 700; /* Peso más elegante */
+  color: #1f2937; /* Gris más sofisticado */
   line-height: 1;
   margin-bottom: 0.25rem;
 }
 
 .stat-label {
-  font-size: 0.875rem;
-  color: #64748b;
-  font-weight: 600;
+  font-size: 0.8rem;
+  color: #6b7280; /* Gris más suave */
+  font-weight: 500; /* Peso más elegante */
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
-/* Responsive Design */
+/* Responsive Design - Mantiene la elegancia en todas las pantallas */
 @media (max-width: 1024px) {
   .cards-container {
-    gap: 2rem;
+    gap: 2.5rem;
   }
   
   .info-card {
@@ -1882,30 +1892,30 @@
 
 @media (max-width: 768px) {
   .student-courses-container {
-    padding: 1.5rem;
+    padding: 2rem 1.5rem; /* Mantiene espaciado elegante */
   }
   
   .welcome-message {
-    font-size: 2.25rem;
+    font-size: 2.125rem; /* Tamaño proporcionado */
   }
   
   .cards-container {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem; /* Mayor espaciado para elegancia */
   }
   
   .info-card {
-    padding: 1.5rem;
+    padding: 2rem; /* Mantiene padding generoso */
   }
   
   .card-header {
     gap: 1rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem; /* Mantiene espaciado elegante */
   }
   
   .card-icon {
-    width: 48px;
-    height: 48px;
+    width: 44px; /* Tamaño consistente */
+    height: 44px;
   }
   
   .card-title {
@@ -1914,20 +1924,20 @@
   
   .quick-stats {
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem; /* Mayor espaciado */
     align-items: center;
   }
   
   .stat-item {
     width: 100%;
-    max-width: 300px;
+    max-width: 280px; /* Ancho más elegante */
     justify-content: center;
   }
 }
 
 @media (max-width: 480px) {
   .student-courses-container {
-    padding: 1rem;
+    padding: 1.5rem 1rem; /* Padding balanceado */
   }
   
   .welcome-message {
@@ -1939,11 +1949,11 @@
   }
   
   .info-card {
-    padding: 1.25rem;
+    padding: 1.75rem; 
   }
   
   .course-badge {
-    padding: 0.875rem 1.5rem;
-    font-size: 1rem;
+    padding: 0.75rem 1.25rem; /* Proporcional y elegante */
+    font-size: 0.95rem;
   }
 }

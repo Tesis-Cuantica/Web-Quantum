@@ -47,7 +47,7 @@ export default function CursosPage() {
         <h1 className="welcome-message">
           Bienvenido <span className="student-name">{userData.nombre}</span>
         </h1>
-        <p className="courses-subtitle">Panel de Cursos - QuantumEd</p>
+        <p className="courses-subtitle">Panel de Cursos </p>
       </div>
 
       {/* Contenedor principal de las dos tarjetas */}
