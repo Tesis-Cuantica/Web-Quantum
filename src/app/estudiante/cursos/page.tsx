@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import CaminoDuolingo from "@/components/estudiante/CaminoDuolingo";
+import ProgressStats from "@/components/estudiante/ProgressStats";
 
 export default function CursosPage() {
   // Estado para simular datos del usuario autenticado
@@ -10,6 +12,9 @@ export default function CursosPage() {
     carrera: '',
     isLoading: true
   });
+
+  const [mostrarCamino, setMostrarCamino] = useState(false);
+  const [mostrarEstadisticas, setMostrarEstadisticas] = useState(false);
 
   // Simulación de carga de datos del usuario (como si viniera del backend/auth)
   useEffect(() => {
@@ -40,6 +45,16 @@ export default function CursosPage() {
     );
   }
 
+  // Si se selecciona Ciberseguridad, mostrar el camino tipo Duolingo
+  if (mostrarCamino) {
+    return (
+      <div className="student-courses-container fade-in">
+        {/* El nav y sidebar siguen visibles por layout, solo cambia el main */}
+        <CaminoDuolingo onBack={() => setMostrarCamino(false)} />
+      </div>
+    );
+  }
+
   return (
     <div className="student-courses-container">
       {/* Header con bienvenida personalizada - Datos vienen del estado/auth */}
@@ -47,7 +62,7 @@ export default function CursosPage() {
         <h1 className="welcome-message">
           Bienvenido <span className="student-name">{userData.nombre}</span>
         </h1>
-        <p className="courses-subtitle">Panel de Cursos </p>
+        <p className="courses-subtitle">Panel de Cursos - QuantumEd</p>
       </div>
 
       {/* Contenedor principal de las dos tarjetas */}
@@ -105,12 +120,22 @@ export default function CursosPage() {
                     <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z"/>
                   </svg>
                 </div>
-                <span className="badge-text">Ciberseguridad</span>
+                {/* Al hacer click en el badge, muestra el camino tipo Duolingo */}
+                <span className="badge-text clickable" onClick={() => setMostrarCamino(true)}>
+                  Ciberseguridad
+                </span>
               </div>
-              
-              <p className="secondary-message">
+                <p className="secondary-message">
                 Más cursos estarán disponibles próximamente
               </p>
+
+              {/* Botón para ver estadísticas */}
+              <button 
+                className="stats-button"
+                onClick={() => setMostrarEstadisticas(true)}
+              >
+                📊 Ver mi progreso
+              </button>
               
               {/* Indicador de progreso */}
               <div className="progress-indicator">
@@ -160,8 +185,21 @@ export default function CursosPage() {
             <div className="stat-number">24/7</div>
             <div className="stat-label">Disponible</div>
           </div>
-        </div>
-      </div>
+        </div>      </div>
+
+      {/* Modal de estadísticas */}
+      {mostrarEstadisticas && (
+        <ProgressStats 
+          studentName={userData.nombre}
+          onClose={() => setMostrarEstadisticas(false)}
+        />
+      )}
     </div>
   );
 }
+// Comentarios:
+// - Se agregó el estado mostrarCamino para controlar la transición.
+// - Al hacer click en "Ciberseguridad", se muestra el componente CaminoDuolingo.
+// - El nav y sidebar no se ven afectados, solo el main content cambia.
+// - El componente CaminoDuolingo tiene animaciones y estructura tipo Duolingo.
+// - Todo es responsivo y elegante, siguiendo tu diseño y colores.

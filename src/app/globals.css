@@ -1499,34 +1499,6 @@
   font-size: 0.9rem;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*  PÁGINA DE CURSOS DEL ESTUDIANTE */
 
 .student-courses-container {
@@ -1955,5 +1927,866 @@
   .course-badge {
     padding: 0.75rem 1.25rem; /* Proporcional y elegante */
     font-size: 0.95rem;
+  }
+}
+
+/*
+Estilos para camino tipo Duolingo:
+- Módulos como tarjetas con banderita y flecha
+- Subtemas como botones grandes debajo, con líneas de "camino"
+- Todo centrado, visualmente claro y responsivo
+- No choca con el resto del diseño
+*/
+
+.camino-camino-duolingo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.5rem;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.camino-modulo-duo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.camino-modulo-tarjeta-duo {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  background: #fff;
+  border: 2.5px solid #1976d2;
+  color: #1976d2;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 1.5rem;
+  padding: 1.1rem 1.7rem;
+  box-shadow: 0 4px 18px 0 rgba(25, 118, 210, 0.10);
+  margin-bottom: 0.7rem;
+  width: 100%;
+  transition: border 0.2s, color 0.2s, box-shadow 0.2s;
+  justify-content: flex-start;
+  cursor: pointer;
+}
+.camino-modulo-tarjeta-duo.activo {
+  border: 2.5px solid #e53935;
+  color: #e53935;
+  box-shadow: 0 6px 24px 0 rgba(229, 57, 53, 0.10);
+}
+
+.camino-bandera-duo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.camino-modulo-titulo-duo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: inherit;
+  display: block;
+}
+
+.camino-flecha-duo {
+  font-size: 1.1rem;
+  margin-left: 0.7rem;
+  color: #b0b8c1;
+}
+
+.camino-subtemas-duo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 1.2rem;
+  gap: 1.2rem;
+}
+
+.camino-subtema-row-duo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  justify-content: center;
+}
+
+.camino-subtema-boton-duo {
+  background: #fff;
+  color: #1976d2;
+  border: 2px solid #1976d2;
+  border-radius: 1.5rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  min-width: 180px;
+  justify-content: center;
+}
+.camino-subtema-boton-duo:hover {
+  background: #e53935;
+  color: #fff;
+  border-color: #e53935;
+}
+
+.camino-nuevo {
+  background: #1976d2;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 0.7rem;
+  padding: 0.1rem 0.7rem;
+  margin-left: 0.7rem;
+  box-shadow: 0 1px 4px 0 rgba(25, 118, 210, 0.10);
+}
+
+.camino-linea-curva-duo {
+  width: 32px;
+  height: 18px;
+  border-bottom: 3px solid #1976d2;
+  border-left: 3px solid transparent;
+  border-radius: 0 0 30px 30px;
+  margin-left: 10px;
+  margin-right: 8px;
+  margin-top: -8px;
+  margin-bottom: -8px;
+}
+
+.camino-linea-vertical-duo {
+  width: 4px;
+  height: 3.5rem;
+  background: linear-gradient(180deg, #1976d2 60%, #e53935 100%);
+  border-radius: 2px;
+  margin: 0 auto;
+  align-self: center;
+}
+
+@media (max-width: 700px) {
+  .camino-camino-duolingo {
+    max-width: 98vw;
+  }
+  .camino-modulo-tarjeta-duo {
+    font-size: 0.95rem;
+    padding: 0.7rem 0.7rem;
+  }
+  .camino-subtema-boton-duo {
+    min-width: 120px;
+    font-size: 0.95rem;
+  }
+}
+
+/*
+Estilos para camino de aprendizaje tipo Duolingo:
+- Fondo oscuro con gradiente
+- Camino vertical zigzagueante
+- Módulos como hitos principales con banderita, flecha y check
+- Subtemas como botones con iconos y estado de progreso
+- Líneas de conexión orgánicas
+- Efectos de hover y sombras sutiles
+- Todo responsivo y sin chocar con el resto del diseño
+*/
+
+.camino-bg-dark {
+  background: #f8f9fa;
+  min-height: 100vh;
+  width: 100vw;
+  padding: 0;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.camino-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  width: 100vw;
+  padding: 1.5rem 1rem 2rem 1rem;
+  margin: 0 auto;
+}
+
+.camino-titulo-principal {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #1976d2;
+  margin-bottom: 2rem;
+  text-align: center;
+  letter-spacing: -1px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.camino-camino-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+  position: relative;
+  padding: 0;
+}
+
+.camino-modulo-hito {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+.camino-modulo-hito.left {
+  align-items: flex-start;
+}
+.camino-modulo-hito.right {
+  align-items: flex-end;
+}
+
+.camino-modulo-btn {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  background: #fff;
+  border: 2px solid #e0e0e0;
+  color: #1976d2;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 1.5rem;
+  padding: 1.2rem 1.8rem;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 0.7rem;
+  width: 100%;
+  max-width: 400px;
+  transition: border 0.2s, color 0.2s, box-shadow 0.2s, background 0.2s;
+  justify-content: space-between;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.camino-modulo-btn.expandido {
+  border: 2px solid #1976d2;
+  color: #1976d2;
+  background: #fff;
+  box-shadow: 0 4px 12px 0 rgba(25, 118, 210, 0.15);
+}
+.camino-modulo-btn:hover {
+  background: #f5f5f5;
+  border-color: #1976d2;
+}
+
+.camino-modulo-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.camino-modulo-btn:hover::before {
+  left: 100%;
+}
+
+.camino-modulo-contenido {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  gap: 0.3rem;
+}
+
+.camino-modulo-numero {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #8b92a0;
+  display: block;
+}
+
+.camino-modulo-titulo {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: inherit;
+  display: block;
+}
+
+.camino-modulo-icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.camino-modulo-titulo {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: inherit;
+  display: block;
+}
+
+.camino-chevron {
+  font-size: 1.1rem;
+  margin-left: 0.7rem;
+  color: #b0b8c1;
+}
+
+.camino-linea-zigzag {
+  width: 4px;
+  height: 3.5rem;
+  background: #e0e0e0;
+  border-radius: 2px;
+  margin: 0 auto;
+  align-self: center;
+  position: relative;
+  z-index: 0;
+}
+
+.camino-subtemas-lista {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  margin-top: 1.2rem;
+  animation: slideDown 0.3s ease-out;
+}
+
+.camino-subtema-row {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  justify-content: center;
+}
+
+.camino-subtema-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+
+.camino-linea-conectora {
+  width: 60px;
+  height: 4px;
+  background: #e0e0e0;
+  border-radius: 2px;
+  position: relative;
+}
+
+.camino-linea-conectora::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -10px;
+  width: 30px;
+  height: 24px;
+  border-left: 4px solid #e0e0e0;
+  border-bottom: 4px solid #e0e0e0;
+  border-radius: 0 0 0 20px;
+}
+
+.camino-linea-conectora::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -10px;
+  width: 30px;
+  height: 24px;
+  border-right: 4px solid #e0e0e0;
+  border-bottom: 4px solid #e0e0e0;
+  border-radius: 0 0 20px 0;
+}
+
+.camino-subtema-info {
+  text-align: center;
+  max-width: 120px;
+}
+
+.camino-subtema-titulo {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #424242;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.camino-nuevo-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #1976d2;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.camino-subtema-contenedor {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  position: relative;
+}
+
+.camino-subtema-btn {
+  background: #fff;
+  color: #1976d2;
+  border: 2px solid #1976d2;
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.camino-subtema-btn:hover {
+  background: #1976d2;
+  color: #fff;
+  border-color: #1976d2;
+}
+
+.camino-subtema-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.3s;
+}
+
+.camino-subtema-btn:hover::before {
+  left: 100%;
+}
+
+.camino-subtema-btn.bloqueado {
+  background: #f5f5f5;
+  color: #9e9e9e;
+  border-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+.camino-subtema-btn.completo {
+  background: #4caf50;
+  color: #fff;
+  border-color: #4caf50;
+}
+
+.camino-subtema-btn.disponible {
+  background: #fff;
+  color: #1976d2;
+  border-color: #1976d2;
+}
+
+.camino-subtema-contenido {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  gap: 0.2rem;
+}
+
+.camino-subtema-descripcion {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #8b92a0;
+  display: block;
+  line-height: 1.3;
+}
+
+.camino-linea-curva {
+  width: 32px;
+  height: 18px;
+  border-bottom: 3px solid #3fa7ff;
+  border-left: 3px solid transparent;
+  border-radius: 0 0 30px 30px;
+  margin-left: 10px;
+  margin-right: 8px;
+  margin-top: -8px;
+  margin-bottom: -8px;
+}
+
+.camino-ingresar-btn {
+  background: #e53935;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 0.7rem;
+  padding: 0.2rem 0.8rem;
+  margin-left: auto;
+}
+
+.camino-back {
+  margin-top: 3rem;
+  padding: 0.8rem 2rem;
+  background: #232946;
+  color: #3fa7ff;
+  border: 2px solid #3fa7ff;
+  border-radius: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.camino-back:hover {
+  background: #3fa7ff;
+  color: #232946;
+}
+
+.camino-fadein {
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.camino-subtema-icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.camino-subtema-titulo {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: inherit;
+  text-align: center;
+}
+
+.camino-nuevo {
+  background: #3fa7ff;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 0.7rem;
+  padding: 0.1rem 0.7rem;
+  margin-top: 0.3rem;
+  box-shadow: 0 1px 4px 0 rgba(63, 167, 255, 0.10);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@media (max-width: 700px) {
+  .camino-container {
+    padding: 1rem 0.5rem 2rem 0.5rem;
+  }
+  
+  .camino-camino-vertical {
+    max-width: 95vw;
+  }
+  
+  .camino-modulo-btn {
+    font-size: 0.95rem;
+    padding: 1rem 1.2rem;
+    max-width: 95vw;
+  }
+  
+  .camino-subtema-btn {
+    width: 70px;
+    height: 70px;
+    font-size: 0.85rem;
+  }
+  
+  .camino-linea-conectora {
+    width: 40px;
+  }
+  
+  .camino-subtema-titulo {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .camino-container {
+    padding: 0.8rem 0.3rem 1.5rem 0.3rem;
+  }
+  
+  .camino-titulo-principal {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .camino-camino-vertical {
+    max-width: 98vw;
+    gap: 2rem;
+  }
+  
+  .camino-modulo-btn {
+    max-width: 98vw;
+    padding: 1rem 1.2rem;
+    font-size: 1rem;
+  }
+  
+  .camino-modulo-contenido {
+    align-items: flex-start;
+  }
+  
+  .camino-subtema-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 0.85rem;
+  }
+  
+  .camino-linea-conectora {
+    width: 30px;
+  }
+  
+  .camino-subtemas-lista {
+    gap: 1.5rem;
+  }
+}
+
+/* Botón de estadísticas */
+.stats-button {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 15px rgba(240, 147, 251, 0.3);
+}
+
+.stats-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(240, 147, 251, 0.4);
+}
+
+.stats-button:active {
+  transform: translateY(0);
+}
+
+/* Mejoras adicionales para el diseño responsive */
+@media (max-width: 768px) {
+  .cards-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .info-card {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+  
+  .quick-stats {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .stat-item {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* Efectos de transición suaves para todas las interacciones */
+.course-badge:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+.badge-text.clickable:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.progress-indicator {
+  margin-top: 1rem;
+}
+
+.progress-fill {
+  transition: width 1s ease-in-out;
+}
+
+/* Diseño horizontal para subtemas - títulos al lado derecho como Duolingo */
+.camino-subtema-row-horizontal {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.camino-subtema-item-horizontal {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  text-decoration: none;
+  color: inherit;
+  padding: 0.8rem;
+  border-radius: 1.2rem;
+  transition: background 0.2s ease, transform 0.2s ease;
+  max-width: 350px;
+  width: 100%;
+}
+
+.camino-subtema-item-horizontal:hover {
+  background: rgba(25, 118, 210, 0.08);
+  transform: translateY(-2px);
+}
+
+.camino-subtema-info-horizontal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  position: relative;
+  gap: 0.4rem;
+}
+
+.camino-subtema-titulo {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.camino-nuevo-badge {
+  background: linear-gradient(135deg, #1976d2, #42a5f5);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 15px;
+  box-shadow: 0 2px 6px rgba(25, 118, 210, 0.3);
+  display: inline-block;
+  letter-spacing: 0.5px;
+}
+
+/* Mejorar el botón circular de los subtemas */
+.camino-subtema-btn {
+  background: #fff;
+  color: #1976d2;
+  border: 3px solid #1976d2;
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.15);
+  text-decoration: none;
+  position: relative;
+  width: 70px;
+  height: 70px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.camino-subtema-btn:hover {
+  background: #1976d2;
+  color: #fff;
+  border-color: #1976d2;
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(25, 118, 210, 0.25);
+}
+
+.camino-subtema-btn.bloqueado {
+  background: #f8f9fa;
+  color: #bdbdbd;
+  border-color: #e0e0e0;
+  cursor: not-allowed;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.camino-subtema-btn.completo {
+  background: #4caf50;
+  color: #fff;
+  border-color: #4caf50;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.15);
+}
+
+.camino-subtema-btn.disponible {
+  background: #fff;
+  color: #1976d2;
+  border-color: #1976d2;
+}
+
+/* Media queries para el diseño horizontal */
+@media (max-width: 768px) {
+  .camino-subtema-item-horizontal {
+    max-width: 100%;
+    gap: 1rem;
+    padding: 0.6rem;
+  }
+  
+  .camino-subtema-btn {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .camino-subtema-titulo {
+    font-size: 0.95rem;
+  }
+  
+  .camino-subtema-row-horizontal {
+    margin-bottom: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .camino-subtema-item-horizontal {
+    gap: 0.8rem;
+    padding: 0.5rem;
+  }
+  
+  .camino-subtema-btn {
+    width: 55px;
+    height: 55px;
+  }
+  
+  .camino-subtema-titulo {
+    font-size: 0.9rem;
+  }
+  
+  .camino-nuevo-badge {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.5rem;
   }
 }
