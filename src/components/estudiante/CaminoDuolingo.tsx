@@ -5,6 +5,7 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp, BookOpen, Diamond, CheckCircle2, Flag, Lock } from "lucide-react";
 import Link from "next/link";
+import { useProgreso } from "../../hooks/useProgreso";
 
 // Iconos SVG mejorados para bandera y estados
 const FlagIcon = ({ color = "#1976d2", size = 28 }) => (
@@ -15,90 +16,11 @@ const LockIcon = ({ size = 18 }) => (
   <Lock size={size} color="#94a3b8" strokeWidth={2} />
 );
 
-// Estructura de módulos y subtemas tipo Duolingo - Ruta de Aprendizaje Cuántico
-const MODULOS = [
-  {
-    id: 1,
-    titulo: "Fundamentos de la Computación Cuántica",
-    estado: "completo", // completo, activo, pendiente
-    subtemas: [
-      { 
-        id: 1, 
-        titulo: "Introducción", 
-        texto: "¡Bienvenido! Descubre los conceptos básicos de la computación cuántica, su historia revolucionaria y por qué está transformando el mundo de la tecnología.", 
-        tipo: "leccion",
-        estado: "completo",
-        nuevo: true 
-      },
-      { 
-        id: 2, 
-        titulo: "Qubits y Estados Cuánticos", 
-        texto: "Aprende sobre los qubits, la unidad básica de información cuántica y cómo se diferencia de los bits clásicos.", 
-        tipo: "leccion",
-        estado: "disponible" 
-      },
-      { 
-        id: 3, 
-        titulo: "Puertas Cuánticas Básicas", 
-        texto: "Explora las puertas cuánticas fundamentales: X, H, Z y CNOT, y cómo manipulan los estados cuánticos.", 
-        tipo: "practica",
-        estado: "bloqueado" 
-      },
-    ],
-  },
-  {
-    id: 2,
-    titulo: "Algoritmos Cuánticos Básicos",
-    estado: "activo",
-    subtemas: [
-      { 
-        id: 1, 
-        titulo: "Superposición y Entrelazamiento", 
-        texto: "Domina los fenómenos cuánticos más poderosos que hacen posible la ventaja cuántica.", 
-        tipo: "leccion",
-        estado: "disponible" 
-      },
-      { 
-        id: 2, 
-        titulo: "Algoritmo de Deutsch-Jozsa", 
-        texto: "Primer algoritmo cuántico que demuestra ventaja exponencial sobre los algoritmos clásicos.", 
-        tipo: "practica",
-        estado: "bloqueado" 
-      },
-      { 
-        id: 3, 
-        titulo: "Examen del Módulo", 
-        texto: "Evalúa tu comprensión de los algoritmos cuánticos básicos.", 
-        tipo: "examen",
-        estado: "bloqueado" 
-      },
-    ],
-  },
-  {
-    id: 3,
-    titulo: "Aplicaciones y Seguridad Cuántica",
-    estado: "pendiente",
-    subtemas: [
-      { 
-        id: 1, 
-        titulo: "Ciberseguridad Cuántica", 
-        texto: "Descubre cómo la computación cuántica revoluciona la criptografía y la seguridad digital.", 
-        tipo: "leccion",
-        estado: "bloqueado" 
-      },
-      { 
-        id: 2, 
-        titulo: "Retos y Futuro Cuántico", 
-        texto: "Explora los desafíos actuales y las oportunidades futuras en el campo cuántico.", 
-        tipo: "leccion",
-        estado: "bloqueado" 
-      },
-    ],
-  },
-];
+
 
 export default function CaminoDuolingo({ onBack }: { onBack?: () => void }) {
   const [moduloExpandido, setModuloExpandido] = useState<number | null>(null);
+  const { modulos, todosLosSubtemasCompletos } = useProgreso();
 
   // Función para obtener el icono según el tipo de subtema
   const getSubtemaIcon = (tipo: string, estado: string) => {
@@ -126,9 +48,8 @@ export default function CaminoDuolingo({ onBack }: { onBack?: () => void }) {
           ← Volver a cursos
         </button>
       )}
-      <h2 className="camino-titulo-principal">Ruta de aprendizaje cuántico</h2>
-      <div className="camino-camino-vertical">
-        {MODULOS.map((mod, idx) => (
+      <h2 className="camino-titulo-principal">Ruta de aprendizaje cuántico</h2>      <div className="camino-camino-vertical">
+        {modulos.map((mod, idx) => (
           <div key={idx} className={`camino-modulo-hito ${idx % 2 === 0 ? 'left' : 'right'}`}>
             {/* Línea de conexión superior */}
             {idx > 0 && <div className="camino-linea-zigzag" />}
@@ -189,7 +110,27 @@ export default function CaminoDuolingo({ onBack }: { onBack?: () => void }) {
                       </Link>
                     )}
                   </div>
-                ))}
+                ))}                {/* Botón de Evaluación del Módulo 1 - Aparece como subtema normal cuando todos están completos */}
+                {mod.id === 1 && todosLosSubtemasCompletos(1) && (
+                  <div className="camino-subtema-row-horizontal">
+                    <Link
+                      href={`/estudiante/cursos/${mod.id}`}
+                      className="camino-subtema-item-horizontal"
+                    >
+                      <div className="camino-subtema-btn disponible">
+                        <span className="camino-subtema-icono">
+                          <CheckCircle2 size={18} />
+                        </span>
+                      </div>
+                      <div className="camino-subtema-info-horizontal">
+                        <h4 className="camino-subtema-titulo">📝 Evaluación del Módulo</h4>
+                        <p className="text-sm text-gray-600">
+                          Demuestra tu dominio de los fundamentos cuánticos
+                        </p>
+                      </div>
+                    </Link>
+                  </div>
+                )}
               </div>
             )}
           </div>        ))}

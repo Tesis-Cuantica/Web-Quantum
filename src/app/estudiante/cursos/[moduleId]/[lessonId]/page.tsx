@@ -3,7 +3,9 @@
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, BookOpen, CheckCircle, Play, Atom, Zap, Lock, Cpu, Brain, Beaker, Settings, RotateCw, Target, Layers } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+// TODO: Update the import path below to the correct location of useProgreso, or create the hook if it doesn't exist.
+import { useProgreso } from '@/hooks/useProgreso';
 
 // Componente interactivo para Qubits y Estados Cuánticos
 function QubitsInteractivo() {
@@ -1547,6 +1549,45 @@ export default function LessonPage() {
   const moduleId = params.moduleId as string;
   const lessonId = params.lessonId as string;
   const [completed, setCompleted] = useState(false);
+  const { completarLeccion, esLeccionDisponible, obtenerEstadoLeccion } = useProgreso();
+
+  // Verificar si la lección está disponible y marcar como completada al cargar
+  useEffect(() => {
+    const moduleNum = parseInt(moduleId);
+    const lessonNum = parseInt(lessonId);
+    
+    if (esLeccionDisponible(moduleNum, lessonNum)) {
+      // Marcar como completada después de un breve delay para simular el proceso de aprendizaje
+      const timer = setTimeout(() => {
+        completarLeccion(moduleNum, lessonNum);
+        setCompleted(true);
+      }, 3000); // 3 segundos para dar tiempo a leer algo del contenido
+      
+      return () => clearTimeout(timer);
+    }
+  }, [moduleId, lessonId, completarLeccion, esLeccionDisponible]);
+
+  // Verificar si la lección está disponible
+  if (!esLeccionDisponible(parseInt(moduleId), parseInt(lessonId))) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="bg-yellow-100 p-8 rounded-2xl border border-yellow-300 max-w-md">
+            <Lock size={48} className="mx-auto text-yellow-600 mb-4" />
+            <h1 className="text-2xl font-bold mb-4 text-gray-800">Lección bloqueada</h1>
+            <p className="text-gray-600 mb-6">Completa las lecciones anteriores para desbloquear esta.</p>
+            <Link 
+              href="/estudiante/cursos" 
+              className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              <ArrowLeft size={20} />
+              Volver a cursos
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   // Datos de las lecciones (en una app real vendrían del backend)
   const lessons = {

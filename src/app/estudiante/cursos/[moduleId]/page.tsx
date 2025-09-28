@@ -3,6 +3,7 @@
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, BookOpen } from 'lucide-react';
+import ExamenModulo from '../../../../components/ExamenModulo';
 
 export default function ModulePage() {
   const params = useParams();
@@ -86,9 +87,7 @@ export default function ModulePage() {
               <div className="w-16 h-1 bg-blue-600 rounded-full mt-4"></div>
             </div>
           </div>
-        </div>
-
-        {/* Lessons List */}
+        </div>        {/* Lessons List */}
         <div className="space-y-4">
           <h2 className="text-xl font-semibold text-gray-900 mb-6">Lecciones del módulo</h2>
           {currentModule.lessons.map((lesson, index) => (
@@ -121,6 +120,13 @@ export default function ModulePage() {
             </Link>
           ))}
         </div>
+
+        {/* Examen del módulo - Solo para el primer módulo */}
+        {moduleId === '1' && (
+          <div className="mt-8">
+            <ExamenModulo moduleId={moduleId} />
+          </div>
+        )}
       </div>
     </div>
   );

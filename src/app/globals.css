@@ -2440,9 +2440,9 @@ Estilos para camino de aprendizaje tipo Duolingo:
 }
 
 .camino-subtema-btn.completo {
-  background: #4caf50;
+  background: #ef4444;
   color: #fff;
-  border-color: #4caf50;
+  border-color: #ef4444;
 }
 
 .camino-subtema-btn.disponible {
@@ -2814,10 +2814,10 @@ Estilos para camino de aprendizaje tipo Duolingo:
 }
 
 .camino-subtema-btn.completo {
-  background: #4caf50;
+  background: #ef4444;
   color: #fff;
-  border-color: #4caf50;
-  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.15);
+  border-color: #ef4444;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);
 }
 
 .camino-subtema-btn.disponible {
