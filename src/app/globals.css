@@ -2123,6 +2123,7 @@ Estilos para camino de aprendizaje tipo Duolingo:
   margin: 0 auto;
   box-sizing: border-box;
   overflow-x: hidden;
+  position: relative;
 }
 
 .camino-titulo-principal {
@@ -2160,6 +2161,12 @@ Estilos para camino de aprendizaje tipo Duolingo:
     max-width: 98vw;
     gap: 1.5rem;
   }
+  .camino-back-top-left {
+    top: 1rem;
+    left: 1rem;
+    padding: 0.65rem 1rem;
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -2169,6 +2176,12 @@ Estilos para camino de aprendizaje tipo Duolingo:
   .camino-camino-vertical {
     max-width: 99vw;
     gap: 1rem;
+  }
+  .camino-back-top-left {
+    top: 0.8rem;
+    left: 0.8rem;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.85rem;
   }
 }
 
@@ -2474,6 +2487,39 @@ Estilos para camino de aprendizaje tipo Duolingo:
   border-radius: 0.7rem;
   padding: 0.2rem 0.8rem;
   margin-left: auto;
+}
+
+.camino-back-top-left {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: #dc2626;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.camino-back-top-left:hover {
+  background: #b91c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.3);
+}
+
+.camino-back-top-left:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.2);
 }
 
 .camino-back {
@@ -2822,3 +2868,6 @@ Estilos para camino de aprendizaje tipo Duolingo:
     padding: 0.2rem 0.5rem;
   }
 }
+
+
+

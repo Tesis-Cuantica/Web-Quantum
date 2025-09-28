@@ -119,9 +119,13 @@ export default function CaminoDuolingo({ onBack }: { onBack?: () => void }) {
       case "pendiente": return "#6b7280";
       default: return "#1976d2";
     }
-  };
-  return (
+  };  return (
     <div className="camino-bg-dark camino-container camino-fadein">
+      {onBack && (
+        <button className="camino-back-top-left" onClick={onBack}>
+          ← Volver a cursos
+        </button>
+      )}
       <h2 className="camino-titulo-principal">Ruta de aprendizaje cuántico</h2>
       <div className="camino-camino-vertical">
         {MODULOS.map((mod, idx) => (
@@ -188,12 +192,8 @@ export default function CaminoDuolingo({ onBack }: { onBack?: () => void }) {
                 ))}
               </div>
             )}
-          </div>
-        ))}
+          </div>        ))}
       </div>
-      {onBack && (
-        <button className="camino-back" onClick={onBack}>← Volver a cursos</button>
-      )}
     </div>
   );
 }
@@ -202,3 +202,4 @@ export default function CaminoDuolingo({ onBack }: { onBack?: () => void }) {
 // - Subtemas aparecen como botones con iconos y estado de progreso, y son links dinámicos.
 // - El camino es vertical, zigzagueante y visualmente atractivo, con fondo oscuro y gradiente.
 // - Todo es responsivo y no choca con el resto del diseño.
+

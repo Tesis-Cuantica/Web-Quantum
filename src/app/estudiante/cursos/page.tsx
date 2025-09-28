@@ -15,7 +15,6 @@ export default function CursosPage() {
 
   const [mostrarCamino, setMostrarCamino] = useState(false);
   const [mostrarEstadisticas, setMostrarEstadisticas] = useState(false);
-
   // Simulación de carga de datos del usuario (como si viniera del backend/auth)
   useEffect(() => {
     // Simular llamada a API o datos de autenticación
@@ -30,6 +29,15 @@ export default function CursosPage() {
         carrera: 'Ingeniería de Sistemas',
         isLoading: false
       });
+
+      // Verificar si se debe mostrar el camino al cargar
+      if (typeof window !== 'undefined') {
+        const shouldShowCamino = window.sessionStorage.getItem('mostrarCamino');
+        if (shouldShowCamino === 'true') {
+          setMostrarCamino(true);
+          window.sessionStorage.removeItem('mostrarCamino'); // Limpiar la bandera
+        }
+      }
     };
 
     simulateUserDataFetch();

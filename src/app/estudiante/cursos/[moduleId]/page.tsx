@@ -2,7 +2,7 @@
 
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, BookOpen } from 'lucide-react';
 
 export default function ModulePage() {
   const params = useParams();
@@ -39,28 +39,31 @@ export default function ModulePage() {
   };
 
   const currentModule = modules[moduleId as keyof typeof modules];
-
   if (!currentModule) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 flex items-center justify-center">
-        <div className="text-center text-white">
-          <h1 className="text-2xl font-bold mb-4">Módulo no encontrado</h1>
-          <Link href="/estudiante/cursos" className="text-blue-300 hover:text-blue-200">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 flex items-center justify-center">
+        <div className="text-center bg-white rounded-2xl border border-gray-200 shadow-lg p-8">
+          <h1 className="text-2xl font-bold mb-4 text-gray-900">Módulo no encontrado</h1>
+          <Link href="/estudiante/cursos" className="text-blue-600 hover:text-blue-700 font-medium">
             ← Volver a cursos
           </Link>
         </div>
       </div>
     );
   }
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 p-6">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
+      <div className="max-w-4xl mx-auto px-6 py-8">
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">
-          <Link 
-            href="/estudiante/cursos"
-            className="flex items-center gap-2 text-blue-300 hover:text-blue-200 transition-colors"
+          <Link            href="/estudiante/cursos"
+            className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors font-medium"
+            onClick={() => {
+              // Esto hará que al llegar a /estudiante/cursos se muestre el camino
+              if (typeof window !== 'undefined') {
+                window.sessionStorage.setItem('mostrarCamino', 'true');
+              }
+            }}
           >
             <ArrowLeft size={20} />
             Volver al camino
@@ -68,33 +71,50 @@ export default function ModulePage() {
         </div>
 
         {/* Module Info */}
-        <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 mb-8">
-          <h1 className="text-3xl font-bold text-white mb-4">
-            Módulo {moduleId}: {currentModule.title}
-          </h1>
-          <p className="text-blue-200 text-lg">
-            {currentModule.description}
-          </p>
+        <div className="bg-white rounded-3xl border border-gray-200 shadow-lg p-8 mb-8">
+          <div className="flex items-start gap-6">
+            <div className="bg-blue-600 p-4 rounded-2xl shadow-sm">
+              <BookOpen className="w-8 h-8 text-white" />
+            </div>
+            <div className="flex-1">
+              <h1 className="text-3xl font-bold text-gray-900 mb-3">
+                Módulo {moduleId}: {currentModule.title}
+              </h1>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                {currentModule.description}
+              </p>
+              <div className="w-16 h-1 bg-blue-600 rounded-full mt-4"></div>
+            </div>
+          </div>
         </div>
 
         {/* Lessons List */}
-        <div className="grid gap-4">
-          {currentModule.lessons.map((lesson) => (
+        <div className="space-y-4">
+          <h2 className="text-xl font-semibold text-gray-900 mb-6">Lecciones del módulo</h2>
+          {currentModule.lessons.map((lesson, index) => (
             <Link
               key={lesson.id}
               href={`/estudiante/cursos/${moduleId}/${lesson.id}`}
-              className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-200 group"
+              className="group bg-white border border-gray-200 rounded-2xl p-6 hover:border-gray-300 hover:shadow-md transition-all duration-300 block"
             >
               <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-xl font-semibold text-white mb-2">
-                    Lección {lesson.id}: {lesson.title}
-                  </h3>
-                  <p className="text-blue-200">
-                    {lesson.description}
-                  </p>
+                <div className="flex items-start gap-4">
+                  <div className={`
+                    w-12 h-12 rounded-xl flex items-center justify-center font-bold text-white
+                    ${index % 2 === 0 ? 'bg-blue-600' : 'bg-red-600'}
+                  `}>
+                    {lesson.id}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                      {lesson.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      {lesson.description}
+                    </p>
+                  </div>
                 </div>
-                <div className="text-blue-300 group-hover:text-white transition-colors">
+                <div className="text-gray-400 group-hover:text-blue-600 transition-colors">
                   <ArrowLeft className="rotate-180" size={24} />
                 </div>
               </div>
