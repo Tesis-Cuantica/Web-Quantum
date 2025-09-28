@@ -2104,6 +2104,11 @@ Estilos para camino de aprendizaje tipo Duolingo:
   padding: 0;
   position: relative;
   overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .camino-container {
@@ -2112,20 +2117,24 @@ Estilos para camino de aprendizaje tipo Duolingo:
   align-items: center;
   justify-content: flex-start;
   min-height: 100vh;
-  width: 100vw;
-  padding: 1.5rem 1rem 2rem 1rem;
+  width: 100%;
+  max-width: 100vw;
+  padding: 2.5rem 0.5rem 2.5rem 0.5rem;
   margin: 0 auto;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .camino-titulo-principal {
-  font-size: 2.1rem;
+  font-size: 2.5rem;
   font-weight: 800;
   color: #1976d2;
-  margin-bottom: 2rem;
   text-align: center;
   letter-spacing: -1px;
   width: 100%;
   max-width: 600px;
+  margin-bottom: 2.5rem;
+  position: relative;
 }
 
 .camino-camino-vertical {
@@ -2134,10 +2143,33 @@ Estilos para camino de aprendizaje tipo Duolingo:
   align-items: center;
   gap: 2.5rem;
   width: 100%;
-  max-width: 450px;
+  max-width: 480px;
   margin: 0 auto;
   position: relative;
   padding: 0;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+@media (max-width: 700px) {
+  .camino-container {
+    padding: 1.2rem 0.2rem 1.5rem 0.2rem;
+    max-width: 100vw;
+  }
+  .camino-camino-vertical {
+    max-width: 98vw;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .camino-container {
+    padding: 0.7rem 0.1rem 1rem 0.1rem;
+  }
+  .camino-camino-vertical {
+    max-width: 99vw;
+    gap: 1rem;
+  }
 }
 
 .camino-modulo-hito {
@@ -2168,7 +2200,7 @@ Estilos para camino de aprendizaje tipo Duolingo:
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
   margin-bottom: 0.7rem;
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
   transition: border 0.2s, color 0.2s, box-shadow 0.2s, background 0.2s;
   justify-content: space-between;
   cursor: pointer;
@@ -2513,7 +2545,7 @@ Estilos para camino de aprendizaje tipo Duolingo:
   .camino-modulo-btn {
     font-size: 0.95rem;
     padding: 1rem 1.2rem;
-    max-width: 95vw;
+    max-width: 100%;
   }
   
   .camino-subtema-btn {
@@ -2537,17 +2569,17 @@ Estilos para camino de aprendizaje tipo Duolingo:
   }
   
   .camino-titulo-principal {
-    font-size: 1.8rem;
+    font-size: 2rem;
     margin-bottom: 1.5rem;
   }
   
   .camino-camino-vertical {
-    max-width: 98vw;
+    max-width: 95vw;
     gap: 2rem;
   }
   
   .camino-modulo-btn {
-    max-width: 98vw;
+    max-width: 100%;
     padding: 1rem 1.2rem;
     font-size: 1rem;
   }
@@ -2659,7 +2691,7 @@ Estilos para camino de aprendizaje tipo Duolingo:
   padding: 0.8rem;
   border-radius: 1.2rem;
   transition: background 0.2s ease, transform 0.2s ease;
-  max-width: 350px;
+  max-width: 400px;
   width: 100%;
 }
 
@@ -2751,7 +2783,7 @@ Estilos para camino de aprendizaje tipo Duolingo:
 /* Media queries para el diseño horizontal */
 @media (max-width: 768px) {
   .camino-subtema-item-horizontal {
-    max-width: 100%;
+    max-width: 95%;
     gap: 1rem;
     padding: 0.6rem;
   }
