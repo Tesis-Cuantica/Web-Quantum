@@ -112,9 +112,8 @@ export default function CaminoDuolingo({ onBack }: { onBack?: () => void }) {
                   </div>
                 ))}                {/* Botón de Evaluación del Módulo 1 - Aparece como subtema normal cuando todos están completos */}
                 {mod.id === 1 && todosLosSubtemasCompletos(1) && (
-                  <div className="camino-subtema-row-horizontal">
-                    <Link
-                      href={`/estudiante/cursos/${mod.id}`}
+                  <div className="camino-subtema-row-horizontal">                    <Link
+                      href={`/estudiante/cursos/${mod.id}/examen`}
                       className="camino-subtema-item-horizontal"
                     >
                       <div className="camino-subtema-btn disponible">

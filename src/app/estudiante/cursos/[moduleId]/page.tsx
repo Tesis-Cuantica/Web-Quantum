@@ -3,7 +3,6 @@
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, BookOpen } from 'lucide-react';
-import ExamenModulo from '../../../../components/ExamenModulo';
 
 export default function ModulePage() {
   const params = useParams();
@@ -119,12 +118,32 @@ export default function ModulePage() {
               </div>
             </Link>
           ))}
-        </div>
-
-        {/* Examen del módulo - Solo para el primer módulo */}
+        </div>        {/* Botón de Examen del módulo - Solo para el primer módulo */}
         {moduleId === '1' && (
           <div className="mt-8">
-            <ExamenModulo moduleId={moduleId} />
+            <Link
+              href={`/estudiante/cursos/${moduleId}/examen`}
+              className="group bg-white border border-gray-200 rounded-2xl p-6 hover:border-gray-300 hover:shadow-md transition-all duration-300 block"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center font-bold text-white bg-green-600">
+                    📝
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                      Evaluación del Módulo
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      Demuestra tu dominio de los fundamentos de la computación cuántica
+                    </p>
+                  </div>
+                </div>
+                <div className="text-gray-400 group-hover:text-blue-600 transition-colors">
+                  <ArrowLeft className="rotate-180" size={24} />
+                </div>
+              </div>
+            </Link>
           </div>
         )}
       </div>
