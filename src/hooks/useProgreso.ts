@@ -156,7 +156,6 @@ export function useProgreso() {
     const subtema = modulo.subtemas.find(sub => sub.id === lessonId);
     return subtema ? subtema.estado !== 'bloqueado' : false;
   };
-
   // Función para obtener el estado de una lección
   const obtenerEstadoLeccion = (moduleId: number, lessonId: number) => {
     const modulo = modulos.find(mod => mod.id === moduleId);
@@ -166,11 +165,28 @@ export function useProgreso() {
     return subtema ? subtema.estado : 'bloqueado';
   };
 
+  // Función para marcar el examen como completado
+  const completarExamen = (moduleId: number) => {
+    const progreso = JSON.parse(localStorage.getItem('progreso-cuantico') || '{}');
+    const clave = `examen-modulo-${moduleId}`;
+    progreso[clave] = 'completado';
+    localStorage.setItem('progreso-cuantico', JSON.stringify(progreso));
+  };
+
+  // Función para verificar si el examen está completado
+  const examenCompletado = (moduleId: number) => {
+    const progreso = JSON.parse(localStorage.getItem('progreso-cuantico') || '{}');
+    const clave = `examen-modulo-${moduleId}`;
+    return progreso[clave] === 'completado';
+  };
+
   return {
     modulos,
     completarLeccion,
     todosLosSubtemasCompletos,
     esLeccionDisponible,
-    obtenerEstadoLeccion
+    obtenerEstadoLeccion,
+    completarExamen,
+    examenCompletado
   };
 }

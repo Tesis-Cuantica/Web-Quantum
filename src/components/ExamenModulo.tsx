@@ -2,7 +2,9 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { CheckCircle, XCircle, Award, BookOpen, ArrowRight, ArrowLeft, RefreshCw } from 'lucide-react';
+import { useProgreso } from '../hooks/useProgreso';
 
 interface Pregunta {
   id: number;
@@ -18,6 +20,8 @@ interface ExamenModuloProps {
 }
 
 export default function ExamenModulo({ moduleId }: ExamenModuloProps) {
+  const router = useRouter();
+  const { completarExamen } = useProgreso();
   const [mostrarExamen, setMostrarExamen] = useState(false);
   const [preguntaActual, setPreguntaActual] = useState(0);
   const [respuestas, setRespuestas] = useState<number[]>([]);
@@ -198,7 +202,6 @@ export default function ExamenModulo({ moduleId }: ExamenModuloProps) {
   const seleccionarRespuesta = (indice: number) => {
     setRespuestaSeleccionada(indice);
   };
-
   const siguientePregunta = () => {
     if (respuestaSeleccionada !== null) {
       const nuevasRespuestas = [...respuestas, respuestaSeleccionada];
@@ -208,17 +211,22 @@ export default function ExamenModulo({ moduleId }: ExamenModuloProps) {
         setPreguntaActual(preguntaActual + 1);
         setRespuestaSeleccionada(null);
       } else {
+        // Marcar el examen como completado
+        completarExamen(parseInt(moduleId));
         setMostrarResultados(true);
       }
     }
   };
-
   const reiniciarExamen = () => {
     setMostrarExamen(false);
     setPreguntaActual(0);
     setRespuestas([]);
     setMostrarResultados(false);
     setRespuestaSeleccionada(null);
+  };
+
+  const volverAlCamino = () => {
+    router.push('/estudiante/cursos');
   };
 
   const calcularPuntaje = () => {
@@ -238,18 +246,25 @@ export default function ExamenModulo({ moduleId }: ExamenModuloProps) {
     if (porcentaje >= 50) return { nivel: "Bien", color: "text-yellow-600", bg: "bg-yellow-50" };
     return { nivel: "Necesitas Practicar", color: "text-red-600", bg: "bg-red-50" };
   };  if (!mostrarExamen) {
-    return (
-      <div className="min-h-screen bg-gray-50 transition-all duration-500 ease-in-out">
+    return (      <div className="min-h-screen bg-gray-50 transition-all duration-500 ease-in-out">
         <div className="container mx-auto px-4 py-8">
-          {/* Botón de volver */}
-          <div className="mb-8">
+          {/* Botones de navegación */}
+          <div className="mb-8 flex justify-between items-center">
             <Link 
               href={`/estudiante/cursos/${moduleId}`}
               className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors font-medium"
             >
-              <ArrowLeft size={20} />
-              Volver al módulo
+              <ArrowLeft size={20} />              Volver al módulo
             </Link>
+              <button 
+              onClick={volverAlCamino}
+              className="flex items-center gap-2 text-red-600 hover:text-red-700 transition-colors font-medium"
+            >
+              Salir
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+            </button>
           </div>
 
           {/* Header */}
@@ -383,28 +398,39 @@ export default function ExamenModulo({ moduleId }: ExamenModuloProps) {
     const puntaje = calcularPuntaje();
     const nivel = obtenerNivel(puntaje);
     
-    return (
-      <div className="min-h-screen bg-gray-50 transition-all duration-500 ease-in-out">
+    return (      <div className="min-h-screen bg-gray-50 transition-all duration-500 ease-in-out">
         <div className="container mx-auto px-4 py-8">
-          {/* Botón de volver */}
-          <div className="mb-8">
+          {/* Botones de navegación */}
+          <div className="mb-8 flex justify-between items-center">
             <Link 
               href={`/estudiante/cursos/${moduleId}`}
               className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors font-medium"
             >
-              <ArrowLeft size={20} />
-              Volver al módulo
+              <ArrowLeft size={20} />              Volver al módulo
             </Link>
+              <button 
+              onClick={volverAlCamino}
+              className="flex items-center gap-2 text-red-600 hover:text-red-700 transition-colors font-medium"
+            >
+              Salir
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+            </button>
           </div>
 
           {/* Header de resultados */}
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-full shadow-lg mb-6 border-4 border-blue-100">
               <Award className="w-10 h-10 text-blue-600" />
-            </div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              ¡Examen Completado!
+            </div>            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+              {puntaje >= Math.ceil(preguntas.length * 0.7) ? '🎉 ¡Felicitaciones! 🎉' : '¡Examen Completado!'}
             </h1>
+            {puntaje >= Math.ceil(preguntas.length * 0.7) && (
+              <p className="text-lg text-green-600 font-semibold">
+                Has demostrado un excelente dominio de los fundamentos cuánticos
+              </p>
+            )}
           </div>
 
           {/* Resultados principales */}
@@ -529,10 +555,14 @@ export default function ExamenModulo({ moduleId }: ExamenModuloProps) {
                 );
               })}
             </div>
-          </div>
-
-          {/* Botones de acción */}
-          <div className="flex gap-4 justify-center max-w-4xl mx-auto">
+          </div>          {/* Botones de acción */}
+          <div className="flex gap-4 justify-center max-w-4xl mx-auto">            <button
+              onClick={volverAlCamino}
+              className="bg-green-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-green-700 transition-all duration-200 flex items-center gap-3 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+            >
+              <CheckCircle size={20} />
+              Continuar Aprendizaje
+            </button>
             <button
               onClick={reiniciarExamen}
               className="bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-200 flex items-center gap-3 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
@@ -547,19 +577,26 @@ export default function ExamenModulo({ moduleId }: ExamenModuloProps) {
   }
   // Vista del examen en progreso
   const pregunta = preguntas[preguntaActual];
-  const progreso = ((preguntaActual + 1) / preguntas.length) * 100;
-  return (
+  const progreso = ((preguntaActual + 1) / preguntas.length) * 100;  return (
     <div className="min-h-screen bg-gray-50 transition-all duration-500 ease-in-out">
       <div className="container mx-auto px-4 py-8">
-        {/* Botón de volver */}
-        <div className="mb-8">
+        {/* Botones de navegación */}
+        <div className="mb-8 flex justify-between items-center">
           <Link 
             href={`/estudiante/cursos/${moduleId}`}
             className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors font-medium"
           >
-            <ArrowLeft size={20} />
-            Volver al módulo
+            <ArrowLeft size={20} />            Volver al módulo
           </Link>
+            <button 
+            onClick={volverAlCamino}
+            className="flex items-center gap-2 text-red-600 hover:text-red-700 transition-colors font-medium"
+          >
+            Salir
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+          </button>
         </div>
 
         {/* Header del examen */}

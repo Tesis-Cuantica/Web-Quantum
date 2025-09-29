@@ -20,7 +20,7 @@ const LockIcon = ({ size = 18 }) => (
 
 export default function CaminoDuolingo({ onBack }: { onBack?: () => void }) {
   const [moduloExpandido, setModuloExpandido] = useState<number | null>(null);
-  const { modulos, todosLosSubtemasCompletos } = useProgreso();
+  const { modulos, todosLosSubtemasCompletos, examenCompletado } = useProgreso();
 
   // Función para obtener el icono según el tipo de subtema
   const getSubtemaIcon = (tipo: string, estado: string) => {
@@ -116,15 +116,17 @@ export default function CaminoDuolingo({ onBack }: { onBack?: () => void }) {
                       href={`/estudiante/cursos/${mod.id}/examen`}
                       className="camino-subtema-item-horizontal"
                     >
-                      <div className="camino-subtema-btn disponible">
+                      <div className={`camino-subtema-btn ${examenCompletado(1) ? 'completo' : 'disponible'}`}>
                         <span className="camino-subtema-icono">
                           <CheckCircle2 size={18} />
                         </span>
-                      </div>
-                      <div className="camino-subtema-info-horizontal">
-                        <h4 className="camino-subtema-titulo">📝 Evaluación del Módulo</h4>
+                      </div>                      <div className="camino-subtema-info-horizontal">
+                        <h4 className="camino-subtema-titulo">
+                          📝 Evaluación del Módulo
+                          {examenCompletado(1) && <span className="ml-2 text-green-600">✓</span>}
+                        </h4>
                         <p className="text-sm text-gray-600">
-                          Demuestra tu dominio de los fundamentos cuánticos
+                          {examenCompletado(1) ? 'Examen completado exitosamente' : 'Demuestra tu dominio de los fundamentos cuánticos'}
                         </p>
                       </div>
                     </Link>
